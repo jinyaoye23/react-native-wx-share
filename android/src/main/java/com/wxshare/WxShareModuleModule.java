@@ -26,9 +26,12 @@ import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.IWXAPIEventHandler;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
 import java.net.URL;
 
 import okhttp3.internal.Util;
@@ -275,11 +278,12 @@ public class WxShareModuleModule extends ReactContextBaseJavaModule implements I
         WXImageObject imageObject = new WXImageObject();
         if (options.hasKey(OPTIONS_IMAGE_URL)) {
             String remoteUrl = options.getString(OPTIONS_IMAGE_URL);
-//            imageObject.imageData = remoteUrl;
             try {
                 bitmap = BitmapFactory.decodeStream(new URL(remoteUrl).openStream());
+                imageObject.imageData = bmpToByteArray(bitmap,true);
             } catch (IOException e) {
                 bitmap = null;
+                imageObject.imageData = null;
                 e.printStackTrace();
             }
         }
