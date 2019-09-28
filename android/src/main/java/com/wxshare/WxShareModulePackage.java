@@ -1,4 +1,4 @@
-package com.wxpay;
+package com.wxshare;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -9,10 +9,10 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 
-public class WxpayModulePackage implements ReactPackage {
+public class WxShareModulePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(new WxpayModuleModule(reactContext));
+        return Arrays.<NativeModule>asList(new WxShareModuleModule(reactContext));
     }
 
     @Override
